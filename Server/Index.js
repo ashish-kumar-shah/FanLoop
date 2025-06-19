@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 app.use( 
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://fanloop-web.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
   })
