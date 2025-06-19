@@ -1,0 +1,26 @@
+# Node modules
+client/node_modules/
+Server/node_modules/
+Server/uploads/
+
+
+# Build files
+client/build/
+Server/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env files
+client/.env
+Server/.env
+
+# OS & Editor stuff
+.DS_Store
+.vscode/
+*.swp
+
+# Coverage / test
+coverage/
+*.test.js
