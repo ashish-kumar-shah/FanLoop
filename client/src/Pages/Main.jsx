@@ -8,9 +8,9 @@ const Main = () => {
   return (
 
 
-    <>
+    <div className="w-full h-screen flex flex-col gap-1">
             <Navbar/>
-      <div className="w-full h-screen p-0 m-0 bg-gray-100 flex  gap-0.5 overflow-hidden hide-scrollbar">
+      <div className="w-full h-full p-0 m-0 bg-gray-100 flex  gap-0.5 overflow-hidden hide-scrollbar">
    {/* sidebar */}
    
 <SideBar/>
@@ -26,7 +26,7 @@ const Main = () => {
    <div className="w-full h-fit flex justify-around items-center fixed bottom-0 p-1 bg-white md:hidden">
               <MobileTab />
             </div>
-    </>
+    </div>
  
   )
 }
