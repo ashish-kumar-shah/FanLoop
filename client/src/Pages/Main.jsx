@@ -2,7 +2,7 @@ import React from 'react'
 import SideBar from '../Component/SideBar'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Component/HomeElement/Navbar'
-
+import MobileTab from "../Component/MobileTabs";
 
 const Main = () => {
   return (
@@ -23,6 +23,9 @@ const Main = () => {
     </div>
 
    </div>
+   <div className="w-full h-fit flex justify-around items-center fixed bottom-0 p-1 bg-white md:hidden">
+              <MobileTab />
+            </div>
     </>
  
   )

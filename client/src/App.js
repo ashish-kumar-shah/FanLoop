@@ -65,9 +65,7 @@ function App() {
                
               </Route>
             </Routes>
-            <div className="w-full h-fit flex justify-around items-center fixed bottom-0 p-1 bg-white md:hidden">
-              <MobileTab />
-            </div>
+            
           </ServicesApi>
         </UserPostContext>
       </UserContext>
