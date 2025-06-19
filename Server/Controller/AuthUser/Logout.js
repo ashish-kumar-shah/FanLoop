@@ -16,7 +16,7 @@ const revokedTokens = new Set();
     res.cookie("token", "", {
       httpOnly: true,
       secure: true,
-      sameSite: "lax",
+       sameSite: "none",
       expires: new Date(0)
     });
 

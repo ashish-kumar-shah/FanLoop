@@ -37,13 +37,13 @@ console.log(req.body);
       res.cookie("token", token, {
         httpOnly: true,
         secure: true,
-        sameSite: "lax",
+        sameSite: "none",
       });
     } else {
       res.cookie("token", token, {
         httpOnly: true,
         secure: false,
-        sameSite: "lax",
+        sameSite: "none",
       });
     }
 
