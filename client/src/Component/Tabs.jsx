@@ -2,11 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
 import serviceContext from "../Context/ServicesContext";
+import LogOut from "./LogOut";
 
 const Tabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { User, logout, authDispatch } = useContext(AppContext);
+  const { User } = useContext(AppContext);
   const {
     getNotifications,
     markNotificationsAsSeen,
@@ -62,11 +63,7 @@ const Tabs = () => {
     { name: "settings", label: "Settings", icon: "settings", path: "/settings" },
   ];
 
-  const handleLogout = () => {
-    logout()
-      .then(() => authDispatch({ type: "LOGOUT" }))
-      .catch(console.error);
-  };
+ 
 
   return (
     <>
@@ -102,13 +99,7 @@ const Tabs = () => {
         })}
 
         {/* Logout (desktop only) */}
-        <div
-          onClick={handleLogout}
-          className="flex items-center gap-3 p-3 rounded-lg cursor-pointer border shadow-sm hover:bg-red-600 hover:text-white transition-all"
-        >
-          <span className="material-symbols-outlined text-xl">logout</span>
-          <span className="text-base">Log Out</span>
-        </div>
+        <LogOut/>
       </div>
 
       {/* 📱 Mobile Bottom Navbar — optional, let me know if you want it */}

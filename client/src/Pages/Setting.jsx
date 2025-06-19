@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 import serviceContext from "../Context/ServicesContext";
+import LogOut from "../Component/LogOut";
 
 const Setting = () => {
   const { User } = useContext(AppContext);
@@ -145,6 +146,7 @@ const Setting = () => {
           Update Email
         </button>
       </div>
+      <LogOut/>
     </div>
   );
 };
