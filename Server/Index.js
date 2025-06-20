@@ -34,7 +34,7 @@ app.use("/api/userpost", require("./Routes/Post"));
 app.use("/api/user", require("./Routes/Services"));
 
 // Default API route
-app.get("/api", (req, res) => {
+app.get("/alive", (req, res) => {
   res.send("✅ FanLoop API is running.");
 });
 
