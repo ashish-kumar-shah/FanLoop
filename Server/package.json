@@ -5,7 +5,7 @@
   "author": "Ashish Kumar Shah",
   "license": "ISC",
   "description": "",
-  "scripts": {
+ "scripts": {
   "start": "node Index.js",
   "build": "npm install --prefix ./client && npm run build --prefix ./client && cp -r ./client/build ./build"
 }
