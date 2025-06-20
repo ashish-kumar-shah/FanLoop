@@ -37,24 +37,19 @@ app.get("/alive", (req, res) => {
 });
 
 // React Frontend Handling
-const clientBuildPath = path.resolve(__dirname, "..", "client", "build");
-
-console.log(clientBuildPath);
+const clientBuildPath = path.resolve(__dirname, "../client/build");
 
 if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
 
-  // Use regex instead of "*" to avoid path-to-regexp crash
   app.get(/^\/(?!api).*/, (req, res) => {
     const indexHtml = path.join(clientBuildPath, "index.html");
     if (fs.existsSync(indexHtml)) {
-      return res.sendFile(indexHtml);
+      res.sendFile(indexHtml);
     } else {
-      return res.status(500).send("index.html not found.");
+      res.status(500).send("index.html not found.");
     }
   });
-} else {
-  console.warn(chalk.red("⚠️ React build folder not found. Skipping static file serving."));
 }
 
 // Start Socket.io server
