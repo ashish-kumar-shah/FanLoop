@@ -22,7 +22,7 @@ import ViewPost from "./Pages/ViewPost";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <UserContext>
         <UserPostContext>
           <ServicesApi>

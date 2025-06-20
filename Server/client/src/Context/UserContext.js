@@ -38,7 +38,7 @@ const UserContext = ({ children }) => {
       }
     };
     checkAuth();
-    // eslint-disable-next-line
+    
   }, []);
 
   return (

@@ -1,204 +1,140 @@
+# 🌀 FanLoop — A Full-Stack Social Media App
 
-# 🤖 Fanloop - A Lightweight Celebrity-Fan Social Platform
+FanLoop is a full-stack social media web application built with **React.js**, **Node.js**, **Express**, **MongoDB**, and **Socket.IO**. It enables users to register, upload posts (image/video), follow others, and receive real-time notifications.
 
-**fanloop** is a modern, lightweight social platform built using the MERN stack. It allows public users to create accounts, follow pre-defined celebrity (dummy) accounts, and view or interact with their posts.
+## 🚀 Live Demo
 
----
-
-## 🌐 Live Preview
-
-> _[Add your deployed link here]_
+🔗 [https://fanloop.onrender.com](https://fanloop.onrender.com)
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
 ```
-fanlopp/
 FanLoop/
-├── client/                          # Frontend (React)
-│   ├── public/
-│   │   ├── index.html
-│   │   ├── logo.png
-│   │   ├── favicon.ico
-│   │   └── manifest.json
-│   ├── src/
-│   │   ├── API/
-│   │   │   ├── PostApi.js
-│   │   │   ├── ServiceApi.js
-│   │   │   └── UserApi.js
-│   │   ├── Component/
-│   │   │   ├── Comment.jsx
-│   │   │   ├── CompanyName.jsx
-│   │   │   ├── DummyAccount.jsx
-│   │   │   ├── FollowButton.jsx
-│   │   │   ├── Loading.jsx
-│   │   │   ├── MobileTabs.jsx
-│   │   │   ├── SideBar.jsx
-│   │   │   ├── Tabs.jsx
-│   │   │   ├── UploadProgres.jsx
-│   │   │   ├── CreatePost/
-│   │   │   │   ├── AddCaption.jsx
-│   │   │   │   ├── Preview.jsx
-│   │   │   │   └── UploadFiles.jsx
-│   │   │   ├── HomeElement/
-│   │   │   │   ├── ContentBar.jsx
-│   │   │   │   ├── logo.png
-│   │   │   │   ├── Navbar.jsx
-│   │   │   │   └── TopBar.jsx
-│   │   │   ├── PostElement/
-│   │   │   │   └── PostLayout.jsx
-│   │   │   └── Reel/
-│   │   │       └── Reel.jsx
-│   │   ├── Context/
-│   │   │   ├── AppContext.js
-│   │   │   ├── PostContext.js
-│   │   │   ├── ServicesApi.js
-│   │   │   ├── ServicesContext.js
-│   │   │   ├── UserContext.js
-│   │   │   └── UserPostContext.js
-│   │   ├── Hooks/
-│   │   │   └── useSocket.js
-│   │   ├── Pages/
-│   │   │   ├── CreatePost.jsx
-│   │   │   ├── Feed.jsx
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Main.jsx
-│   │   │   ├── Notification.jsx
-│   │   │   ├── Profile.jsx
-│   │   │   └── Register.jsx
-│   │   ├── App.js
-│   │   ├── App.css
-│   │   ├── index.js
-│   │   ├── index.css
-│   │   ├── ProtectedRoute.js
-│   │   └── PublicRoute.js
-│   ├── .env
-│   ├── .gitignore
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── postcss.config.js
-│
-├── Server/                          # Backend (Express)
-│   ├── Controller/
-│   ├── Middleware/
-│   ├── Models/
-│   ├── Routes/
-│   ├── Config/
-│   ├── uploads/
-│   ├── index.js
-│   ├── .env
-│   ├── .gitignore
-│   └── package.json
-│
 ├── README.md
-└── .gitignore                       # Root gitignore (recommended)
-
-
+├── render.yaml
+├── Server/
+│   ├── .env
+│   ├── Index.js                 # Express server entry point
+│   ├── Socket.js                # Socket.IO real-time handling
+│   ├── package.json
+│   ├── Auth/                    # Validation & username logic
+│   ├── Config/                  # Database connection
+│   ├── Controller/              # Business logic (CRUD)
+│   ├── Middleware/              # File upload middleware
+│   ├── Models/                  # Mongoose models
+│   ├── Routes/                  # API endpoints
+│   ├── Utils/                   # Utility files
+│   ├── temp/                    # Temporary file storage
+│   └── client/                  # React frontend app
+│       ├── build/              # Production-ready build
+│       ├── public/             # Static assets
+│       └── src/
+│           ├── Pages/          # Route-level components
+│           ├── Component/      # Reusable UI components
+│           ├── Context/        # Global state (React Context API)
+│           ├── API/            # Axios API calls
+│           ├── Hooks/          # Custom hooks (e.g. socket)
+│           ├── Reducer/        # Reducer logic
+│           └── Utils/          # Frontend helpers
 ```
 
 ---
 
-## ⚙️ Tech Stack
+## 🛠️ Tech Stack
 
-### Frontend
+### 🔹 Frontend
+
 - React.js
 - Tailwind CSS
-- Context API
-- React Router
 - Axios
+- React Router
+- Context API
 
-### Backend
-> *(Handled separately – assumed to be Express.js with MongoDB)*
+### 🔸 Backend
 
----
-
-## 🚀 Features
-
-- 🔐 Login/Register functionality
-- 📸 Create & upload posts (image/video)
-- 👤 Dummy celebrity accounts
-- ✅ Public users can follow and view celebrity posts
-- 🏠 Feed Page with post listing
-- ⏳ Upload progress indicator
-- 📱 Fully responsive mobile layout
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- JWT Authentication
+- Multer (File Uploads)
+- Cloudinary (Media Storage)
+- Socket.IO (Real-time Notifications)
 
 ---
 
-## 🧪 Local Setup
+## 🔐 Features
 
-### 1. Clone the repo
+- ✅ User Registration & Login
+- 🖼️ Post Image/Video Uploads
+- 🧑‍🤝‍🧑 Follow/Unfollow Users
+- 🔔 Real-time Notifications via WebSocket
+- 🔍 Search Users
+- 🧾 Profile Management
+- 🛡️ Protected Routes (Auth Middleware)
+- 📦 RESTful APIs
+
+---
+
+## 📦 Installation
 
 ```bash
-git clone https://github.com/yourusername/lax.git
-cd lax
-```
+# Clone the repository
+git clone https://github.com/your-username/fanloop.git
+cd fanloop/Server
 
-### 2. Install dependencies
+# Install server dependencies
+npm install
 
-```bash
+# Install frontend dependencies
+cd client
 npm install
 ```
 
-### 3. Create `.env` file
+---
 
-```env
-REACT_APP_USER_URL=http://localhost:5000/api/auth/user
-REACT_APP_POST_URL=http://localhost:5000/api/userpost
-REACT_APP_SERVICE_URL=http://localhost:5000/api/user
-```
-
-### 4. Run the frontend
+## 🧪 Development
 
 ```bash
-npm start
-```
-
-Make sure your backend is running on port `5000`.
-
----
-
-## 🧩 Core Folders
-
-### `src/Context/`
-- AppContext.js, UserContext.js, PostContext.js – global state logic
-
-### `src/API/`
-- Axios files for API calls – `UserApi.js`, `PostApi.js`, `ServiceApi.js`
-
-### `src/Component/`
-- Components like `SideBar`, `Navbar`, `UploadFiles`, `FollowButton`
-
-### `src/Pages/`
-- Auth & user pages: `Login`, `Register`, `Feed`, `Profile`, `Home`, etc.
-
-### `src/Hooks/`
-- `useSocket.js`: manages real-time socket interaction
-
----
-
-## 📄 Scripts
-
-```bash
-npm start       # Starts frontend dev server
-npm run build   # Builds production version
-npm test        # Runs tests (if added)
+# From the /Server directory:
+npm run build        # Builds the React frontend
+npm start            # Starts the backend and serves frontend build
 ```
 
 ---
 
-## 🙌 Author
+## 🌐 Environment Variables
 
-Ashish Kumar shah
+In the `Server/.env` file:
+
+```
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+---
+
+## 📤 Deployment (Render)
+
+- Uses `render.yaml` for deployment configuration.
+- Single service (Node server + React build).
+- Socket.IO works over the same server using `http`.
+
+---
+
+## 🤝 Author
+
+**Ashish Kumar Shah**
+
 
 
 ---
 
-## 📜 License
+## 📄 License
 
-MIT License
-
-=======
-# FanLoop
->>>>>>> e1dacce561d4e05e0871654e1bd50a6259d15125
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
