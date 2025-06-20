@@ -37,13 +37,16 @@ app.get("/alive", (req, res) => {
 });
 
 // React Frontend Handling
-const clientBuildPath = path.resolve(__dirname, "../client/build");
+const clientBuildPath = path.resolve(__dirname, "./client/build");
+console.log(clientBuildPath);
 
 if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
-
+    
   app.get(/^\/(?!api).*/, (req, res) => {
     const indexHtml = path.join(clientBuildPath, "index.html");
+    console.log(indexHtml);
+    
     if (fs.existsSync(indexHtml)) {
       res.sendFile(indexHtml);
     } else {
