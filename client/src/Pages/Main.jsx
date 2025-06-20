@@ -8,7 +8,7 @@ const Main = () => {
   return (
     <div className="w-full h-screen flex flex-col">
       {/* Fixed Navbar height */}
-      <div className="h-16 w-full shrink-0">
+      <div className="h-16 w-full shrink-0 md:hidden">
         <Navbar />
       </div>
 
