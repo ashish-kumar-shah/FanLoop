@@ -38,6 +38,7 @@ app.get("/alive", (req, res) => {
 
 // React Frontend Handling
 const clientBuildPath = path.join(__dirname, "../client/build");
+console.log(clientBuildPath);
 
 if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
