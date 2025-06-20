@@ -6,9 +6,16 @@ const jwt = require('jsonwebtoken');
 
 const dummyAccount = async (req, res) => {
   try {
-    const name = faker.person.fullName();
+    // Generate full name between 3-15 characters and alphabet only
+    let name;
+    do {
+      name = faker.person.fullName().split(' ').slice(0, 2).join(' ');
+    } while (name.length < 3 || name.length > 15 || !/^[A-Za-z\s]+$/.test(name));
+
+    // Generate a valid username using custom method (assumed safe)
     const username = await generateUniqueUsername('user');
 
+    // Generate unique, valid email
     let email, existingEmail;
     do {
       const [first, last] = name.split(' ');
@@ -16,7 +23,17 @@ const dummyAccount = async (req, res) => {
       existingEmail = await User.findOne({ email });
     } while (existingEmail);
 
-    const rawPassword = faker.internet.password({ length: 10 });
+    // Generate valid password (min 8 chars + uppercase, lowercase, number, special char)
+    let rawPassword;
+    do {
+      rawPassword = faker.internet.password({ length: 10, memorable: false });
+    } while (
+      !/[a-z]/.test(rawPassword) ||
+      !/[A-Z]/.test(rawPassword) ||
+      !/[0-9]/.test(rawPassword) ||
+      !/[^a-zA-Z0-9]/.test(rawPassword)
+    );
+
     const hashedPassword = await bcrypt.hash(rawPassword, 10);
 
     const newUser = new User({
@@ -29,21 +46,23 @@ const dummyAccount = async (req, res) => {
 
     await newUser.save();
 
-    // Generate JWT Token
     const token = jwt.sign(
       { id: newUser._id, username: newUser.username },
       process.env.JWT_SECRET || 'default_secret',
       { expiresIn: '7d' }
     );
 
-    // Send token via HTTP response (as JSON or set-cookie)
     res
       .status(201)
-      // optional: send as cookie
-      .cookie('token', token, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 7 * 24 * 60 * 60 * 1000 })
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      })
       .json({
         success: true,
-        token, // <-- token in response
+        token,
         user: {
           _id: newUser._id,
           name: newUser.name,

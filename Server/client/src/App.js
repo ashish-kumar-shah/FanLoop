@@ -1,7 +1,7 @@
 import "./App.css";
 import UserContext from "./Context/UserContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MobileTab from "./Component/MobileTabs";
+
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import ProtectedRoute from "./ProtectedRoute";

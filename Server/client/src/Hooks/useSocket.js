@@ -8,7 +8,7 @@ export const useSocket = (userId, onNotification) => {
   useEffect(() => {
     if (!userId) return;
 
-    const socket = io("http://localhost:5000", {
+    const socket = io("/", {
       query: { userId },
       transports: ["websocket"],
     });

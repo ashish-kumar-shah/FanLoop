@@ -13,7 +13,7 @@ const UserSchema = new Schema(
     profilePic: {
       type: String,
 
-      default:"https://cdn.corenexis.com/view/?img=d/ju19/zZs6Pb.jpg"
+      default:"https://res.cloudinary.com/dehdhj8d0/image/upload/v1750410114/fanloop-profiles/ua6r6bys9gnzvdpbmdhu.jpg"
     },
     name: {
       type: String,
