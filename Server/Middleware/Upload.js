@@ -1,10 +1,21 @@
+// middleware/upload.js
+
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
-// Storage setup
+// Define temp folder path
+const tempDir = path.join(__dirname, "../temp");
+
+// ✅ Ensure temp folder exists
+if (!fs.existsSync(tempDir)) {
+  fs.mkdirSync(tempDir, { recursive: true });
+}
+
+// Set up multer storage (temp only, used before Cloudinary upload)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, tempDir); // ✅ Save to temp folder
   },
   filename: (req, file, cb) => {
     const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${path.extname(file.originalname)}`;
@@ -12,23 +23,22 @@ const storage = multer.diskStorage({
   },
 });
 
-// File filter: allow all image/* and video/* types
+// Filter allowed file types (image/* and video/*)
 const fileFilter = (req, file, cb) => {
-  const allowedImage = file.mimetype.startsWith("image/");
-  const allowedVideo = file.mimetype.startsWith("video/");
-
-  if (allowedImage || allowedVideo) {
+  const isImage = file.mimetype.startsWith("image/");
+  const isVideo = file.mimetype.startsWith("video/");
+  if (isImage || isVideo) {
     cb(null, true);
   } else {
     cb(new Error("Only image and video files are allowed!"), false);
   }
 };
 
-// Multer config
+// Max size: 100MB
 const upload = multer({
   storage,
-  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB limit (optional, increase if needed)
   fileFilter,
+  limits: { fileSize: 100 * 1024 * 1024 },
 });
 
 module.exports = upload;

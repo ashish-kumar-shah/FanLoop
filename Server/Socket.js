@@ -6,7 +6,7 @@ const userSocketMap = new Map();
 function initSocket(server) {
   io = new Server(server, {
     cors: {
-      origin: "https://fanloop-web.onrender.com",
+     origin:false,
       credentials: true,
     },
   });
