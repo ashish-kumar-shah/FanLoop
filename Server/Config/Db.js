@@ -6,10 +6,7 @@ const connectToDB = async () => {
 
   const connect = async () => {
     try {
-      await mongoose.connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+      await mongoose.connect(MONGO_URI, { dbname: "fanloop" });
 
       console.log("✅ Connected to MongoDB");
     } catch (error) {
