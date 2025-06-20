@@ -37,7 +37,8 @@ app.get("/alive", (req, res) => {
 });
 
 // React Frontend Handling
-const clientBuildPath = path.join(__dirname, "../client/build");
+const clientBuildPath = path.resolve(__dirname, "..", "client", "build");
+
 console.log(clientBuildPath);
 
 if (fs.existsSync(clientBuildPath)) {
