@@ -16,7 +16,7 @@ connectToDB();
 
 // Middleware
 app.use(cors({
-  origin: false, // allow same-origin React frontend
+  origin: false, // Change this to your frontend origin in production
   credentials: true,
 }));
 app.use(express.json());
@@ -31,28 +31,28 @@ app.use("/api/auth/user", require("./Routes/User"));
 app.use("/api/userpost", require("./Routes/Post"));
 app.use("/api/user", require("./Routes/Services"));
 
-// Default API health check
+// Health Check Route
 app.get("/alive", (req, res) => {
   res.send("✅ FanLoop API is running.");
 });
 
-// ===== React Frontend Handling =====
-const clientBuildPath = path.join(__dirname, "./client/build");
+// React Frontend Handling
+const clientBuildPath = path.join(__dirname, "../client/build");
 
 if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
 
-  // Handle client-side routing
-  app.get("*", (req, res) => {
-    const indexHtmlPath = path.join(clientBuildPath, "index.html");
-    if (fs.existsSync(indexHtmlPath)) {
-      res.sendFile(indexHtmlPath);
+  // Use regex instead of "*" to avoid path-to-regexp crash
+  app.get(/^\/(?!api).*/, (req, res) => {
+    const indexHtml = path.join(clientBuildPath, "index.html");
+    if (fs.existsSync(indexHtml)) {
+      return res.sendFile(indexHtml);
     } else {
-      res.status(404).send("React index.html not found.");
+      return res.status(500).send("index.html not found.");
     }
   });
 } else {
-  console.warn(chalk.red("⚠️  client/build folder not found. React frontend will not be served."));
+  console.warn(chalk.red("⚠️ React build folder not found. Skipping static file serving."));
 }
 
 // Start Socket.io server
